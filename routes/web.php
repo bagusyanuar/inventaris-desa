@@ -25,12 +25,29 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post( '/delete', [\App\Http\Controllers\Admin\AdminController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'member'], function () {
-    Route::get( '/', [\App\Http\Controllers\Admin\MemberController::class, 'index']);
-    Route::get( '/tambah', [\App\Http\Controllers\Admin\MemberController::class, 'add_page']);
-    Route::post( '/create', [\App\Http\Controllers\Admin\MemberController::class, 'create']);
-    Route::get( '/edit/{id}', [\App\Http\Controllers\Admin\MemberController::class, 'edit_page']);
-    Route::post( '/patch', [\App\Http\Controllers\Admin\MemberController::class, 'patch']);
-    Route::post( '/delete', [\App\Http\Controllers\Admin\MemberController::class, 'destroy']);
+Route::group(['prefix' => 'kategori'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\KategoriController::class, 'index']);
+    Route::get( '/tambah', [\App\Http\Controllers\Admin\KategoriController::class, 'add_page']);
+    Route::post( '/create', [\App\Http\Controllers\Admin\KategoriController::class, 'create']);
+    Route::get( '/edit/{id}', [\App\Http\Controllers\Admin\KategoriController::class, 'edit_page']);
+    Route::post( '/patch', [\App\Http\Controllers\Admin\KategoriController::class, 'patch']);
+    Route::post( '/delete', [\App\Http\Controllers\Admin\KategoriController::class, 'destroy']);
 });
 
+Route::group(['prefix' => 'barang'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\BarangController::class, 'index']);
+    Route::get( '/tambah', [\App\Http\Controllers\Admin\BarangController::class, 'add_page']);
+    Route::post( '/create', [\App\Http\Controllers\Admin\BarangController::class, 'create']);
+    Route::get( '/edit/{id}', [\App\Http\Controllers\Admin\BarangController::class, 'edit_page']);
+    Route::post( '/patch', [\App\Http\Controllers\Admin\BarangController::class, 'patch']);
+    Route::post( '/delete', [\App\Http\Controllers\Admin\BarangController::class, 'destroy']);
+});
+
+Route::group(['prefix' => 'peminjaman'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\PeminjamanController::class, 'index']);
+    Route::get( '/tambah', [\App\Http\Controllers\Admin\PeminjamanController::class, 'add_page']);
+    Route::post( '/create', [\App\Http\Controllers\Admin\PeminjamanController::class, 'create']);
+    Route::get( '/edit/{id}', [\App\Http\Controllers\Admin\PeminjamanController::class, 'edit_page']);
+    Route::post( '/patch', [\App\Http\Controllers\Admin\PeminjamanController::class, 'patch']);
+    Route::post( '/delete', [\App\Http\Controllers\Admin\PeminjamanController::class, 'destroy']);
+});

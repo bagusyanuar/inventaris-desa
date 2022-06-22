@@ -31,7 +31,7 @@
         </div>
         <div class="w-100 p-2">
             <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6 col-sm-11">
+                <div class="col-lg-5 col-md-6 col-sm-11">
                     <div class="card">
                         <div class="card-body">
                             <form method="post" action="/admin/create">
@@ -50,6 +50,7 @@
                                     <label for="role">Hak Akses</label>
                                     <select class="form-control" id="role" name="role">
                                         <option value="admin">Admin</option>
+                                        <option value="pimpinan">Pimpinan</option>
                                     </select>
                                 </div>
                                 <div class="w-100 mb-2 mt-3 text-right">

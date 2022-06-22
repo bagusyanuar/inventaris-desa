@@ -26,6 +26,7 @@
                     class="fa fa-bars"></i></a>
         </li>
     </ul>
+    <div>Sistem Informasi Inventaris Desa</div>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a href="/logout" class="nav-link navbar-link-item">Logout</a>
@@ -56,9 +57,9 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-users"></i>
+                            <i class="nav-icon fa fa-database"></i>
                             <p>
-                                Pengguna
+                                Data
                                 <i class="right fa fa-angle-down"></i>
                             </p>
                         </a>
@@ -71,10 +72,17 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/member"
+                                <a href="/kategori"
                                    class="nav-link">
                                     <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
-                                    <p>Member</p>
+                                    <p>Kategori</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/barang"
+                                   class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
+                                    <p>Barang</p>
                                 </a>
                             </li>
                         </ul>
@@ -89,10 +97,10 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/penerimaan"
+                                <a href="/peminjaman"
                                    class="nav-link">
                                     <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
-                                    <p>Penerimaan</p>
+                                    <p>Peminjaman</p>
                                 </a>
                             </li>
                             <li class="nav-item">
