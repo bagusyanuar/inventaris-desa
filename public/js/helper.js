@@ -10,6 +10,10 @@ function ErrorAlert(title, msg) {
     Swal.fire(title, msg, 'error');
 }
 
+function SuccessAlert(title, msg) {
+    Swal.fire(title, msg, 'success');
+}
+
 function AlertConfirm(title = 'Apakah Anda Yakin?', text = 'Apa anda yakin melanjutkan proses', fn) {
     Swal.fire({
         title: title,

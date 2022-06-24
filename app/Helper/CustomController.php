@@ -187,6 +187,15 @@ class CustomController extends Controller
         ], $status);
     }
 
+    public function jsonFailedResponse($msg = '', $status = 500, $data = null)
+    {
+        return response()->json([
+            'status' => $status,
+            'message' => $msg,
+            'payload' => $data
+        ], $status);
+    }
+
     public function getCity()
     {
         $curl = curl_init();

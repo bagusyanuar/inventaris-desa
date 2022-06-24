@@ -18,4 +18,9 @@ class Peminjaman extends Model
         'keterangan',
         'status',
     ];
+
+    public function detail()
+    {
+        return $this->hasMany(PeminjamanDetail::class, 'peminjaman_id');
+    }
 }

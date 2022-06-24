@@ -51,6 +51,8 @@
                                data-id="{{ $v->id }}"><i class="fa fa-edit"></i></a>
                             <a href="#" class="btn btn-sm btn-danger btn-delete" data-id="{{ $v->id }}"><i
                                     class="fa fa-trash"></i></a>
+                            <a href="/peminjaman/detail/{{ $v->id }}" class="btn btn-sm btn-info btn-detail"
+                               data-id="{{ $v->id }}"><i class="fa fa-info"></i></a>
                         </td>
                     </tr>
                 @endforeach

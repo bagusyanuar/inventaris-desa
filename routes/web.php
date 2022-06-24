@@ -50,4 +50,7 @@ Route::group(['prefix' => 'peminjaman'], function () {
     Route::get( '/edit/{id}', [\App\Http\Controllers\Admin\PeminjamanController::class, 'edit_page']);
     Route::post( '/patch', [\App\Http\Controllers\Admin\PeminjamanController::class, 'patch']);
     Route::post( '/delete', [\App\Http\Controllers\Admin\PeminjamanController::class, 'destroy']);
+    Route::get( '/list', [\App\Http\Controllers\Admin\PeminjamanController::class, 'detail_data']);
+    Route::post( '/append-list', [\App\Http\Controllers\Admin\PeminjamanController::class, 'append_detail']);
 });
+
