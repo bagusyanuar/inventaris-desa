@@ -11,29 +11,28 @@
     @endif
     <div class="container-fluid pt-3">
         <div class="d-flex align-items-center justify-content-between mb-3">
-            <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Peminjaman Barang</p>
+            <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Pengembalian Barang</p>
             <ol class="breadcrumb breadcrumb-transparent mb-0">
                 <li class="breadcrumb-item">
                     <a href="/dashboard">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Peminjaman Barang
+                <li class="breadcrumb-item active" aria-current="page">Pengembalian Barang
                 </li>
             </ol>
         </div>
         <div class="w-100 p-2">
             <div class="text-right mb-2 pr-3">
-                <a href="/peminjaman/tambah" class="btn btn-primary"><i class="fa fa-plus mr-1"></i><span
+                <a href="/pengembalian/tambah" class="btn btn-primary"><i class="fa fa-plus mr-1"></i><span
                         class="font-weight-bold">Tambah</span></a>
             </div>
             <table id="table-data" class="display w-100 table table-bordered">
                 <thead>
                 <tr>
                     <th width="5%" class="text-center">#</th>
-                    <th width="10%">No. Peminjaman</th>
-                    <th width="20%">Nama</th>
-                    <th>Tanggal Pinjam</th>
-                    <th>Tanggal Kembali</th>
-                    <th>Status</th>
+                    <th width="12%">Tanggal</th>
+                    <th width="15%">No. Peminjaman</th>
+                    <th>Nama Peminjam</th>
+                    <th>Keterangan</th>
                     <th width="12%" class="text-center">Action</th>
                 </tr>
                 </thead>
@@ -41,17 +40,12 @@
                 @foreach($data as $v)
                     <tr>
                         <td width="5%" class="text-center">{{ $loop->index + 1 }}</td>
-                        <td>{{ $v->no_peminjaman }}</td>
-                        <td>{{ $v->nama }}</td>
-                        <td>{{ $v->tanggal_pinjam }}</td>
-                        <td>{{ $v->tanggal_kembali }}</td>
-                        <td>{{ $v->status }}</td>
+                        <td>{{ $v->tanggal }}</td>
+                        <td>{{ $v->peminjaman->no_peminjaman }}</td>
+                        <td>{{ $v->peminjaman->nama }}</td>
+                        <td>{{ $v->keterangan }}</td>
                         <td class="text-center">
-{{--                            <a href="/peminjaman/edit/{{ $v->id }}" class="btn btn-sm btn-warning btn-edit"--}}
-{{--                               data-id="{{ $v->id }}"><i class="fa fa-edit"></i></a>--}}
-{{--                            <a href="#" class="btn btn-sm btn-danger btn-delete" data-id="{{ $v->id }}"><i--}}
-{{--                                    class="fa fa-trash"></i></a>--}}
-                            <a href="/peminjaman/detail/{{ $v->id }}" class="btn btn-sm btn-info btn-detail"
+                            <a href="/pengembalian/detail/{{ $v->id }}" class="btn btn-sm btn-info btn-detail"
                                data-id="{{ $v->id }}"><i class="fa fa-info"></i></a>
                         </td>
                     </tr>

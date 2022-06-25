@@ -24,44 +24,10 @@
     </style>
 </head>
 <body>
-<div class="text-center f-bold report-title">Sistem Informasi</div>
+<div class="text-center f-bold report-title">SISTEM INFORMASI INVENTARIS DESA SAWAHAN</div>
 <br/>
 @yield('content')
-<hr>
-<br>
-<div class="row">
-    <div class="col-xs-8"></div>
-    <div class="col-xs-3">
-        <div class="text-center">
-            <p class="text-center">Surakarta, {{ date('Y-m-d') }}</p>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-3">
-        <div class="text-center">
-        </div>
-    </div>
-    <div class="col-xs-5"></div>
-    <div class="col-xs-3">
-        <div class="text-center">
-            <p class="text-center">Mengetahui,</p>
-        </div>
-    </div>
-</div>
-<br>
-<br>
-<div class="row">
-    <div class="col-xs-3">
-        <div class="text-center">
-        </div>
-    </div>
-    <div class="col-xs-5"></div>
-    <div class="col-xs-3">
-        <div class="text-center">
-            <p class="text-center">(Admin)</p>
-        </div>
-    </div>
-</div>
+
+
 </body>
 </html>

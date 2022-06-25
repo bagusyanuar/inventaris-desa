@@ -47,10 +47,17 @@ Route::group(['prefix' => 'peminjaman'], function () {
     Route::get( '/', [\App\Http\Controllers\Admin\PeminjamanController::class, 'index']);
     Route::get( '/tambah', [\App\Http\Controllers\Admin\PeminjamanController::class, 'add_page']);
     Route::post( '/create', [\App\Http\Controllers\Admin\PeminjamanController::class, 'create']);
-    Route::get( '/edit/{id}', [\App\Http\Controllers\Admin\PeminjamanController::class, 'edit_page']);
-    Route::post( '/patch', [\App\Http\Controllers\Admin\PeminjamanController::class, 'patch']);
-    Route::post( '/delete', [\App\Http\Controllers\Admin\PeminjamanController::class, 'destroy']);
     Route::get( '/list', [\App\Http\Controllers\Admin\PeminjamanController::class, 'detail_data']);
     Route::post( '/append-list', [\App\Http\Controllers\Admin\PeminjamanController::class, 'append_detail']);
+    Route::get( '/detail/{id}', [\App\Http\Controllers\Admin\PeminjamanController::class, 'detail_page']);
+    Route::get( '/cetak/{id}', [\App\Http\Controllers\Admin\PeminjamanController::class, 'cetak']);
+});
+
+Route::group(['prefix' => 'pengembalian'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\PengembalianController::class, 'index']);
+    Route::get( '/tambah', [\App\Http\Controllers\Admin\PengembalianController::class, 'add_page']);
+    Route::post( '/create', [\App\Http\Controllers\Admin\PengembalianController::class, 'create']);
+    Route::get( '/detail/{id}', [\App\Http\Controllers\Admin\PengembalianController::class, 'detail_page']);
+    Route::get( '/cetak/{id}', [\App\Http\Controllers\Admin\PengembalianController::class, 'cetak']);
 });
 

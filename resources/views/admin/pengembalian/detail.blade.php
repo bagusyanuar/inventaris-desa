@@ -10,13 +10,13 @@
         </script>
     @endif
     <div class="d-flex justify-content-between align-items-center">
-        <h4 class="mb-0">Halaman Detail Peminjaman</h4>
+        <h4 class="mb-0">Halaman Detail Pengembalian</h4>
         <ol class="breadcrumb breadcrumb-transparent mb-0">
             <li class="breadcrumb-item">
                 <a href="/">Dashboard</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="/peminjaman">Peminjaman</a>
+                <a href="/pengembalian">Pengembalian</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Detail
             </li>
@@ -29,20 +29,35 @@
                     <div class="card-body">
                         <p class="font-weight-bold">Detail Peminjaman</p>
                         <div class="d-flex align-items-center mb-2">
-                            <span class="w-50 font-weight-bold">Nama Peminjaman</span>
-                            <span class="w-50  font-weight-bold">: {{ $data->nama }}</span>
+                            <span class="w-50 font-weight-bold">Nama Peminjam</span>
+                            <span class="w-50  font-weight-bold">: {{ $data->peminjaman->nama }}</span>
                         </div>
                         <div class="d-flex align-items-center mb-2">
                             <span class="w-50 font-weight-bold">No. Peminjaman</span>
-                            <span class="w-50  font-weight-bold">: {{ $data->no_peminjaman }}</span>
+                            <span class="w-50  font-weight-bold">: {{ $data->peminjaman->no_peminjaman }}</span>
                         </div>
                         <div class="d-flex align-items-center mb-2">
                             <span class="w-50 font-weight-bold">Tanggal Pinjam</span>
-                            <span class="w-50  font-weight-bold">: {{ $data->tanggal_pinjam }}</span>
+                            <span class="w-50  font-weight-bold">: {{ $data->peminjaman->tanggal_pinjam }}</span>
                         </div>
                         <div class="d-flex align-items-center mb-2">
                             <span class="w-50 font-weight-bold">Tanggal Kembali</span>
-                            <span class="w-50  font-weight-bold">: {{ $data->tanggal_kembali }}</span>
+                            <span class="w-50  font-weight-bold">: {{ $data->peminjaman->tanggal_kembali }}</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="w-50 font-weight-bold">Keterangan</span>
+                            <span class="w-50  font-weight-bold">: {{ $data->peminjaman->keterangan }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="font-weight-bold">Detail Pengembalian</p>
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="w-50 font-weight-bold">Tanggal Di Kembalikan</span>
+                            <span class="w-50  font-weight-bold">: {{ $data->tanggal }}</span>
                         </div>
                         <div class="d-flex align-items-center mb-2">
                             <span class="w-50 font-weight-bold">Keterangan</span>
@@ -61,7 +76,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($data->detail as $v)
+            @foreach($data->peminjaman->detail as $v)
                 <tr>
                     <td width="5%" class="text-center">{{ $loop->index + 1 }}</td>
                     <td>{{ $v->barang->nama }}</td>
@@ -71,7 +86,7 @@
             </tbody>
         </table>
         <div class="text-right mt-3">
-            <a href="/peminjaman/cetak/{{ $data->id }}" target="_blank" class="btn btn-success" id="btn-cetak">
+            <a href="/pengembalian/cetak/{{ $data->id }}" target="_blank" class="btn btn-success" id="btn-cetak">
                 <i class="fa fa-print mr-2"></i>
                 <span>Cetak</span>
             </a>
