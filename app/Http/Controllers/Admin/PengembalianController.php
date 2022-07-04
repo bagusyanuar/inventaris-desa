@@ -35,10 +35,19 @@ class PengembalianController extends CustomController
         try {
             DB::beginTransaction();
             $peminjaman_id = $this->postField('peminjaman');
-            $peminjaman = Peminjaman::where('id', $peminjaman_id)->first();
+            $peminjaman = Peminjaman::with('detail.barang')->where('id', $peminjaman_id)->first();
             $peminjaman->update([
                 'status' => 'kembali'
             ]);
+
+            foreach ($peminjaman->detail as $v) {
+                $qty_pinjam = $v->qty;
+                $qty_barang = $v->barang->qty;
+                $qty = $qty_barang + $qty_pinjam;
+                $v->barang()->update([
+                    'qty' => $qty
+                ]);
+            }
             $data = [
                 'peminjaman_id' => $peminjaman->id,
                 'keterangan' => $this->postField('keterangan'),

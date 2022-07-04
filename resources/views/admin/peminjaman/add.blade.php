@@ -162,7 +162,7 @@
                     $('#qty').val(0);
                     SuccessAlert('Berhasil', 'Berhasil Menambahkan Data');
                     reload();
-                })
+                }, 'Persediaan Barang Kurang')
             });
             $('.btn-delete').on('click', function (e) {
                 e.preventDefault();

@@ -21,7 +21,7 @@ class PeminjamanController extends CustomController
 
     public function index()
     {
-        $data = Peminjaman::all();
+        $data = Peminjaman::orderBy('id', 'DESC')->get();
         return view('admin.peminjaman.index')->with(['data' => $data]);
     }
 
@@ -44,9 +44,23 @@ class PeminjamanController extends CustomController
                 'no_peminjaman' => 'TR-' . \date('YmdHis')
             ];
             $peminjaman = Peminjaman::create($data);
-            PeminjamanDetail::with('barang')->whereNull('peminjaman_id')->update([
-                'peminjaman_id' => $peminjaman->id
-            ]);
+            $detail = PeminjamanDetail::with('barang')->whereNull('peminjaman_id')
+                ->get();
+            foreach ($detail as $v) {
+                $v->update([
+                    'peminjaman_id' => $peminjaman->id
+                ]);
+                $qty_pinjam = $v->qty;
+                $qty_barang = $v->barang->qty;
+                if ($qty_barang < $qty_pinjam) {
+                    DB::rollBack();
+                    return redirect()->back()->with(['failed' => 'Stok Barang ' . $v->barang->nama . ' Kurang']);
+                }
+                $qty = $qty_barang - $qty_pinjam;
+                $v->barang()->update([
+                    'qty' => $qty
+                ]);
+            }
             DB::commit();
             return redirect()->back()->with(['success' => 'Berhasil Menambahkan Data...']);
         } catch (\Exception $e) {
@@ -66,6 +80,7 @@ class PeminjamanController extends CustomController
         $data = Peminjaman::with(['detail.barang'])->findOrFail($id);
         return $this->convertToPdf('cetak.nota', ['data' => $data]);
     }
+
     public function detail_data()
     {
         try {
@@ -79,12 +94,17 @@ class PeminjamanController extends CustomController
     public function append_detail()
     {
         try {
+            $qty = (int)$this->postField('qty');
             $data = [
                 'peminjaman_id' => null,
                 'barang_id' => $this->postField('barang'),
-                'qty' => $this->postField('qty')
+                'qty' => $qty
             ];
 
+            $barang = Barang::find($this->postField('barang'));
+            if ($barang->qty < $qty) {
+                return $this->jsonResponse('Persediaan Barang Kurang', 202);
+            }
             PeminjamanDetail::create($data);
             return $this->jsonResponse('success', 200);
         } catch (\Exception $e) {
