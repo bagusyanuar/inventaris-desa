@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Admin;
 use App\Helper\CustomController;
 use App\Models\Barang;
 use App\Models\Peminjaman;
+use App\Models\PeminjamanDetail;
 use App\Models\Pengembalian;
 
 class LaporanController extends CustomController
@@ -26,7 +27,7 @@ class LaporanController extends CustomController
         try {
             $tgl1 = $this->field('tgl1');
             $tgl2 = $this->field('tgl2');
-            $data = Peminjaman::with('detail')
+            $data = Peminjaman::with(['detail', 'peminjam'])
                 ->whereBetween('tanggal_pinjam', [$tgl1, $tgl2])
                 ->orderBy('id', 'DESC')->get();
             return $this->basicDataTables($data);
@@ -39,7 +40,7 @@ class LaporanController extends CustomController
     {
         $tgl1 = $this->field('tgl1');
         $tgl2 = $this->field('tgl2');
-        $data = Peminjaman::with('detail')
+        $data = Peminjaman::with(['detail', 'peminjam'])
             ->whereBetween('tanggal_pinjam', [$tgl1, $tgl2])
             ->orderBy('id', 'DESC')->get();
         return $this->convertToPdf('admin.laporan.peminjaman.cetak', [
@@ -101,6 +102,37 @@ class LaporanController extends CustomController
     {
         $data = Barang::with('kategori')->get();
         return $this->convertToPdf('admin.laporan.barang.cetak', [
+            'data' => $data,
+        ]);
+    }
+
+    public function barang_dipinjam_page()
+    {
+        return view('admin.laporan.barang-dipinjam.index');
+    }
+
+    public function barang_dipinjam_data()
+    {
+        try {
+            $data = PeminjamanDetail::with(['peminjaman.peminjam', 'barang'])
+                ->whereHas('peminjaman', function ($q) {
+                    return $q->where('status', '=', 'pinjam');
+                })
+                ->orderBy('id', 'DESC')->get();
+            return $this->basicDataTables($data);
+        } catch (\Exception $e) {
+            return $this->basicDataTables([]);
+        }
+    }
+
+    public function barang_dipinjam_cetak()
+    {
+        $data = PeminjamanDetail::with(['peminjaman.peminjam', 'barang'])
+            ->whereHas('peminjaman', function ($q) {
+                return $q->where('status', '=', 'pinjam');
+            })
+            ->orderBy('id', 'DESC')->get();
+        return $this->convertToPdf('admin.laporan.barang-dipinjam.cetak', [
             'data' => $data,
         ]);
     }

@@ -20,7 +20,7 @@ class PengembalianController extends CustomController
 
     public function index()
     {
-        $data = Pengembalian::with('peminjaman')->orderBy('id', 'DESC')->get();
+        $data = Pengembalian::with('peminjaman.peminjam')->orderBy('id', 'DESC')->get();
         return view('admin.pengembalian.index')->with(['data' => $data]);
     }
 

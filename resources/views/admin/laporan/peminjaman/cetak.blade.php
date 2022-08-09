@@ -21,7 +21,7 @@
             <tr>
                 <td width="5%" class="text-center">{{ $loop->index + 1 }}</td>
                 <td>{{ $v->no_peminjaman }}</td>
-                <td>{{ $v->nama }}</td>
+                <td>{{ $v->peminjam->nama }}</td>
                 <td>{{ $v->tanggal_pinjam }}</td>
                 <td>{{ $v->tanggal_kembali }}</td>
                 <td>{{ $v->status }}</td>

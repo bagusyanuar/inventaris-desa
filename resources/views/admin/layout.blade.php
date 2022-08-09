@@ -36,11 +36,11 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-1">
     <div class="sidebar">
         <a href="/" class="brand-link">
-            <img src="{{ asset('assets/icon/logo.png') }}"
+            <img src="{{ asset('assets/icon/logo-sawahan.png') }}"
                  alt="AdminLTE Logo"
                  class="brand-image"
             >
-            <span class="brand-text font-weight-light">Laravel</span>
+            <span class="brand-text font-weight-light">Kel. Sawahan</span>
         </a>
         <div class="my-sidebar-menu">
             <ul class="nav nav-sidebar nav-pills flex-column">
@@ -71,6 +71,13 @@
                                        class="nav-link">
                                         <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
                                         <p>Admin</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/peminjam"
+                                       class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
+                                        <p>Peminjam</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -137,6 +144,13 @@
                                    class="nav-link">
                                     <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
                                     <p>Pengembalian</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/laporan-barang-pinjam"
+                                   class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
+                                    <p>Barang Di Pinjam</p>
                                 </a>
                             </li>
                             <li class="nav-item">

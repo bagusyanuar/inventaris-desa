@@ -25,6 +25,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post( '/delete', [\App\Http\Controllers\Admin\AdminController::class, 'destroy']);
 });
 
+Route::group(['prefix' => 'peminjam'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\PeminjamController::class, 'index']);
+    Route::get( '/tambah', [\App\Http\Controllers\Admin\PeminjamController::class, 'add_page']);
+    Route::post( '/create', [\App\Http\Controllers\Admin\PeminjamController::class, 'create']);
+    Route::get( '/edit/{id}', [\App\Http\Controllers\Admin\PeminjamController::class, 'edit_page']);
+    Route::post( '/patch', [\App\Http\Controllers\Admin\PeminjamController::class, 'patch']);
+    Route::post( '/delete', [\App\Http\Controllers\Admin\PeminjamController::class, 'destroy']);
+});
+
 Route::group(['prefix' => 'kategori'], function () {
     Route::get( '/', [\App\Http\Controllers\Admin\KategoriController::class, 'index']);
     Route::get( '/tambah', [\App\Http\Controllers\Admin\KategoriController::class, 'add_page']);
@@ -49,6 +58,7 @@ Route::group(['prefix' => 'peminjaman'], function () {
     Route::post( '/create', [\App\Http\Controllers\Admin\PeminjamanController::class, 'create']);
     Route::get( '/list', [\App\Http\Controllers\Admin\PeminjamanController::class, 'detail_data']);
     Route::post( '/append-list', [\App\Http\Controllers\Admin\PeminjamanController::class, 'append_detail']);
+    Route::post( '/destroy-list', [\App\Http\Controllers\Admin\PeminjamanController::class, 'destroy_detail']);
     Route::get( '/detail/{id}', [\App\Http\Controllers\Admin\PeminjamanController::class, 'detail_page']);
     Route::get( '/cetak/{id}', [\App\Http\Controllers\Admin\PeminjamanController::class, 'cetak']);
 });
@@ -71,6 +81,12 @@ Route::group(['prefix' => 'laporan-pengembalian'], function () {
     Route::get( '/', [\App\Http\Controllers\Admin\LaporanController::class, 'pengembalian_page']);
     Route::get( '/data', [\App\Http\Controllers\Admin\LaporanController::class, 'pengembalian_data']);
     Route::get( '/cetak', [\App\Http\Controllers\Admin\LaporanController::class, 'pengembalian_cetak']);
+});
+
+Route::group(['prefix' => 'laporan-barang-pinjam'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\LaporanController::class, 'barang_dipinjam_page']);
+    Route::get( '/data', [\App\Http\Controllers\Admin\LaporanController::class, 'barang_dipinjam_data']);
+    Route::get( '/cetak', [\App\Http\Controllers\Admin\LaporanController::class, 'barang_dipinjam_cetak']);
 });
 
 Route::group(['prefix' => 'laporan-barang'], function () {

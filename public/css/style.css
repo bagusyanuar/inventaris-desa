@@ -1,6 +1,6 @@
 .login-body {
     height: 100vh;
-    background-color: #27aeef;
+    background: url("../assets/icon/background.jpg");
 }
 
 .login-icon {

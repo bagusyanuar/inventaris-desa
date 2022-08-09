@@ -30,7 +30,7 @@
                         <p class="font-weight-bold">Detail Peminjaman</p>
                         <div class="d-flex align-items-center mb-2">
                             <span class="w-50 font-weight-bold">Nama Peminjaman</span>
-                            <span class="w-50  font-weight-bold">: {{ $data->nama }}</span>
+                            <span class="w-50  font-weight-bold">: {{ $data->peminjam->nama }}</span>
                         </div>
                         <div class="d-flex align-items-center mb-2">
                             <span class="w-50 font-weight-bold">No. Peminjaman</span>

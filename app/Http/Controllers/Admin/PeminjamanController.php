@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Admin;
 use App\Helper\CustomController;
 use App\Models\Barang;
 use App\Models\Kategori;
+use App\Models\Peminjam;
 use App\Models\Peminjaman;
 use App\Models\PeminjamanDetail;
 use Illuminate\Support\Facades\DB;
@@ -21,14 +22,15 @@ class PeminjamanController extends CustomController
 
     public function index()
     {
-        $data = Peminjaman::orderBy('id', 'DESC')->get();
+        $data = Peminjaman::with('peminjam')->orderBy('id', 'DESC')->get();
         return view('admin.peminjaman.index')->with(['data' => $data]);
     }
 
     public function add_page()
     {
         $barang = Barang::all();
-        return view('admin.peminjaman.add')->with(['barang' => $barang]);
+        $peminjam = Peminjam::all();
+        return view('admin.peminjaman.add')->with(['barang' => $barang, 'peminjam' => $peminjam]);
     }
 
     public function create()
@@ -38,7 +40,7 @@ class PeminjamanController extends CustomController
             $data = [
                 'tanggal_pinjam' => $this->postField('tanggal_pinjam'),
                 'tanggal_kembali' => $this->postField('tanggal_kembali'),
-                'nama' => $this->postField('nama'),
+                'peminjam_id' => $this->postField('peminjam'),
                 'keterangan' => $this->postField('keterangan'),
                 'status' => 'pinjam',
                 'no_peminjaman' => 'TR-' . \date('YmdHis')
@@ -71,13 +73,13 @@ class PeminjamanController extends CustomController
 
     public function detail_page($id)
     {
-        $data = Peminjaman::with(['detail.barang'])->findOrFail($id);
+        $data = Peminjaman::with(['detail.barang', 'peminjam'])->findOrFail($id);
         return view('admin.peminjaman.detail')->with(['data' => $data]);
     }
 
     public function cetak($id)
     {
-        $data = Peminjaman::with(['detail.barang'])->findOrFail($id);
+        $data = Peminjaman::with(['detail.barang', 'peminjam'])->findOrFail($id);
         return $this->convertToPdf('cetak.nota', ['data' => $data]);
     }
 
@@ -109,6 +111,16 @@ class PeminjamanController extends CustomController
             return $this->jsonResponse('success', 200);
         } catch (\Exception $e) {
             return $this->jsonFailedResponse('success');
+        }
+    }
+
+    public function destroy_detail() {
+        try {
+            $id = $this->postField('id');
+            PeminjamanDetail::destroy($id);
+            return $this->jsonResponse('success', 200);
+        }catch (\Exception $e) {
+            return $this->jsonResponse('failed', 500);
         }
     }
 }

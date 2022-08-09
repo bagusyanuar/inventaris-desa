@@ -36,10 +36,13 @@
                         @csrf
                         <div class="row">
                             <div class="col-lg-4">
-                                <div class="w-100 mb-1">
-                                    <label for="nama" class="form-label">Nama Peminjam</label>
-                                    <input type="text" class="form-control" id="nama" placeholder="Nama"
-                                           name="nama">
+                                <div class="form-group w-100 mb-1">
+                                    <label for="peminjam">Peminjam</label>
+                                    <select class="form-control" id="peminjam" name="peminjam">
+                                        @foreach($peminjam as $v)
+                                            <option value="{{ $v->id }}">{{ $v->nama }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -129,6 +132,11 @@
             table.ajax.reload();
         }
 
+        function destroy(id) {
+            AjaxPost('/peminjaman/destroy-list', {id}, function () {
+                window.location.reload();
+            });
+        }
         $(document).ready(function () {
             table = DataTableGenerator('#table-data', '/peminjaman/list', [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false},

@@ -12,10 +12,12 @@
             font-size: 14px;
             font-weight: bolder;
         }
+
         .f-bold {
             font-weight: bold;
         }
-        .footer{
+
+        .footer {
             position: fixed;
             bottom: 0cm;
             right: 0cm;
@@ -24,7 +26,11 @@
     </style>
 </head>
 <body>
-<div class="text-center f-bold report-title">SISTEM INFORMASI INVENTARIS DESA SAWAHAN</div>
+<div style="position: relative">
+    <img src={{ public_path('assets/icon/logo-sawahan.png') }} height="50" style="position: absolute; top: 0; left: 0">
+    <div class="text-center f-bold report-title">SISTEM INFORMASI INVENTARIS DESA SAWAHAN</div>
+</div>
+
 <br/>
 @yield('content')
 

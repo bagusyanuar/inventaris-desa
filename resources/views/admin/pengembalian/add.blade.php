@@ -38,7 +38,7 @@
                             <label for="peminjaman">No. Peminjaman</label>
                             <select class="form-control" id="peminjaman" name="peminjaman">
                                 @foreach($peminjaman as $v)
-                                    <option value="{{ $v->id }}">{{ $v->no_peminjaman }} ({{$v->nama}})</option>
+                                    <option value="{{ $v->id }}">{{ $v->no_peminjaman }} ({{$v->peminjam->nama}})</option>
                                 @endforeach
                             </select>
                         </div>
