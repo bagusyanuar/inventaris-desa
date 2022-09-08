@@ -65,6 +65,13 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'barang' => [
+            'driver' => 'local',
+            'root' => public_path() . '/assets/barang',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*

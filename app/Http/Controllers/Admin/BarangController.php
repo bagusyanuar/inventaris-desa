@@ -37,6 +37,12 @@ class BarangController extends CustomController
                 'qty' => $this->postField('qty'),
                 'deskripsi' => $this->postField('deskripsi'),
             ];
+            $nama_gambar = $this->generateImageName('gambar');
+
+            if ($nama_gambar !== '') {
+                $data['gambar'] = $nama_gambar;
+                $this->uploadImage('gambar', $nama_gambar, 'barang');
+            }
             Barang::create($data);
             return redirect()->back()->with(['success' => 'Berhasil Menambahkan Data...']);
         } catch (\Exception $e) {
@@ -62,6 +68,12 @@ class BarangController extends CustomController
                 'qty' => $this->postField('qty'),
                 'deskripsi' => $this->postField('deskripsi'),
             ];
+            $nama_gambar = $this->generateImageName('gambar');
+
+            if ($nama_gambar !== '') {
+                $data['gambar'] = $nama_gambar;
+                $this->uploadImage('gambar', $nama_gambar, 'barang');
+            }
             $barang->update($data);
             return redirect('/barang')->with(['success' => 'Berhasil Merubah Data...']);
         }catch (\Exception $e) {

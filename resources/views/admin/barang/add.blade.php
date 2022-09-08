@@ -34,7 +34,7 @@
                 <div class="col-lg-5 col-md-6 col-sm-11">
                     <div class="card">
                         <div class="card-body">
-                            <form method="post" action="/barang/create">
+                            <form method="post" action="/barang/create" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group w-100 mb-1">
                                     <label for="kategori">Kategori</label>
@@ -58,6 +58,11 @@
                                     <label for="deskripsi" class="form-label">Deskripsi</label>
                                     <textarea rows="3" class="form-control" id="deskripsi" placeholder="Deskripsi"
                                               name="deskripsi"></textarea>
+                                </div>
+                                <div class="w-100 mb-1">
+                                    <label for="gambar" class="form-label">Gambar Menu</label>
+                                    <input type="file" class="form-control" id="gambar" placeholder="Gambar Menu"
+                                           name="gambar">
                                 </div>
                                 <div class="w-100 mb-2 mt-3 text-right">
                                     <button type="submit" class="btn btn-primary">Simpan</button>

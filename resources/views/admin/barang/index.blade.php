@@ -33,6 +33,7 @@
                     <th>Nama</th>
                     <th>qty</th>
                     <th>Deskripsi</th>
+                    <th>Gambar</th>
                     <th width="15%" class="text-center">Action</th>
                 </tr>
                 </thead>
@@ -44,6 +45,19 @@
                         <td>{{ $v->nama }}</td>
                         <td>{{ $v->qty }}</td>
                         <td>{{ $v->deskripsi }}</td>
+                        <td>
+                            @if($v->gambar !== null)
+                                <a target="_blank"
+                                   href="{{ asset('assets/barang')."/".$v->gambar }}">
+                                    <img
+                                        src="{{ asset('assets/barang')."/".$v->gambar }}"
+                                        alt="Gambar Produk"
+                                        style="width: 75px; height: 80px; object-fit: cover"/>
+                                </a>
+                            @else
+                                Belum Ada Gambar
+                            @endif
+                        </td>
                         <td class="text-center">
                             <a href="/barang/edit/{{ $v->id }}" class="btn btn-sm btn-warning btn-edit"
                                data-id="{{ $v->id }}"><i class="fa fa-edit"></i></a>

@@ -27,7 +27,7 @@
 </head>
 <body>
 <div style="position: relative">
-    <img src={{ public_path('assets/icon/logo-sawahan.png') }} height="50" style="position: absolute; top: 0; left: 0">
+    <img src="{{ public_path('assets/icon/logo-sawahan.png') }}" height="50" style="position: absolute; top: 0; left: 0">
     <div class="text-center f-bold report-title">SISTEM INFORMASI INVENTARIS DESA SAWAHAN</div>
 </div>
 
